@@ -72,7 +72,7 @@ yourlabs.Widget.prototype.initializeAutocomplete = function() {
         this.autocompleteOptions);
 
     // Add a class to ease css selection of autocompletes for widgets
-    this.autocomplete.outerContainer.addClass(
+    this.autocomplete.menu.addClass(
         'autocomplete-light-widget');
 };
 
