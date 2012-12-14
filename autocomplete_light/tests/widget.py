@@ -19,23 +19,26 @@ class WidgetTestCase(LiveServerTestCase):
 
     def autocomplete_visible(self, id=None):
         if id is None: id = self.default_id
-        return self.autocomplete_element(id=None).is_displayed()
+        try:
+            return self.autocomplete_element(id=None).is_displayed()
+        except:
+            return False
 
     def autocomplete_element(self, id=None):
         if id is None: id = self.default_id
         return self.selenium.find_element_by_css_selector(
-            '.yourlabs-autocomplete.outer-container.id-%s' % id)
+            '.dropdown-menu.typeahead')
 
     def autocomplete_hilighted_choice_element(self, id=None):
         if id is None: id = self.default_id
         return self.selenium.find_element_by_css_selector(
-            '.yourlabs-autocomplete.inner-container.id-%s [data-value].hilight' % id)
+            '.dropdown-menu.typeahead [data-value].active')
 
 
     def autocomplete_choice_elements(self, id=None):
         if id is None: id = self.default_id
         return self.selenium.find_elements_by_css_selector(
-            '.yourlabs-autocomplete.inner-container.id-%s [data-value]' % id)
+            '.dropdown-menu.typeahead [data-value]')
 
     def input_element(self, id=None):
         if id is None: id = self.default_id

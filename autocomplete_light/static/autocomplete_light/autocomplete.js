@@ -2,7 +2,7 @@ var yourlabs = {}
 
 yourlabs.Autocomplete = function (input) {
     this.input = input
-    this.menu = $('<div class="typeahead dropdown-menu"></div>');
+    this.menu = '<span class="div typeahead dropdown-menu"></span>';
     this.data = {};
     this.queryVariable = 'q';
     this.minimumCharacters = 0;
@@ -12,6 +12,8 @@ yourlabs.Autocomplete.prototype = {
     constructor: yourlabs.Autocomplete
 
   , initialize: function () {
+        this.menu = $(this.menu);
+
         this.input
             .on('blur',     $.proxy(this.blur, this))
             .on('keypress', $.proxy(this.keypress, this))
@@ -24,7 +26,7 @@ yourlabs.Autocomplete.prototype = {
 
         this.menu
             .on('click', $.proxy(this.click, this))
-            .on('mouseenter', 'li', $.proxy(this.mouseenter, this))
+            .on('mouseenter', this.choiceSelector, $.proxy(this.mouseenter, this))
     }
 
   , eventSupported: function(eventName) {
@@ -96,6 +98,7 @@ yourlabs.Autocomplete.prototype = {
   , next: function (event) {
       var active = this.menu.find('.active').removeClass('active')
         , next = active.next()
+
 
       if (!next.length) {
         next = $(this.menu.find(this.choiceSelector)[0])

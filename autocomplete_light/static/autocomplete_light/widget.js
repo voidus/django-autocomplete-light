@@ -78,14 +78,14 @@ yourlabs.Widget.prototype.initializeAutocomplete = function() {
 
 // Bind Autocomplete.selectChoice signal to Widget.selectChoice()
 yourlabs.Widget.prototype.bindSelectChoice = function() {
-    this.input.bind('selectChoice', function(e, choice) {
+    this.input.bind('selectChoice', function(e, choice, autocomplete) {
         if (!choice.length)
             return // placeholder: create choice here
 
         var widget = $(this).parents('.autocomplete-light-widget'
             ).yourlabsWidget();
 
-        widget.selectChoice(choice);
+        widget.selectChoice(choice) && autocomplete.hide();
     });
 };
 
@@ -105,6 +105,8 @@ yourlabs.Widget.prototype.selectChoice = function(choice) {
     this.resetDisplay();
 
     this.input.val('');
+
+    return true
 }
 
 // Unselect a value if the maximum number of selected values has been
