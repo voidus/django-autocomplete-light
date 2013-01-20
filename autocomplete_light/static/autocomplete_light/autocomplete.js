@@ -93,12 +93,9 @@ yourlabs.Autocomplete.prototype = {
       return this
     }
 
-
-
   , next: function (event) {
       var active = this.menu.find('.active').removeClass('active')
         , next = active.next()
-
 
       if (!next.length) {
         next = $(this.menu.find(this.choiceSelector)[0])
@@ -266,12 +263,14 @@ $.fn.yourlabsAutocomplete = function(overrides) {
     return this.data('autocomplete');
 };
 
-// Serves as both an example to set a signal, and to set or unset the hilight class.
+// Binding some default behaviors.
 $(document).ready(function() {
+    function removeHilightClass(e, choice, autocomplete) {
+        choice.removeClass(autocomplete.hilightClass);
+    };
     $(document).bind('hilightChoice', function(e, choice, autocomplete) {
         choice.addClass(autocomplete.hilightClass);
     });
-    $(document).bind('dehilightChoice', function(e, choice, autocomplete) {
-        choice.removeClass(autocomplete.hilightClass);
-    });
+    $(document).bind('dehilightChoice', removeHilightClass);
+    $(document).bind('selectChoice', removeHilightClass);
 });

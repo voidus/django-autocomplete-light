@@ -1,3 +1,17 @@
+1.1.9
+
+- Use explicit check for None value instead of trueness, allowing pk=0 (thanks
+  @ekohl).
+- Widget requires proper url setup (thanks @emesik).
+- Rewrote keypress handler using recent contributions.
+
+Also credits to @ekohl and @emesik for working on keypress handling (added to
+AUTHORS).
+
+1.1.8 (was not released on PyPi)
+
+- Alias autocomplete_light.FixedModelForm to autocomplete_light.ModelForm.
+
 1.1.7 Reset default hideAfter to 500, or click support is half broken.
 
 1.1.6
