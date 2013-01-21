@@ -25,8 +25,9 @@ yourlabs.Autocomplete.prototype = {
         }
 
         this.menu
-            .on('click', $.proxy(this.click, this))
             .on('mouseenter', this.choiceSelector, $.proxy(this.mouseenter, this))
+
+        $(this.choiceSelector).live('click', $.proxy(this.click, this))
     }
 
   , eventSupported: function(eventName) {
