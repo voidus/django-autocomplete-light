@@ -96,6 +96,9 @@ class WidgetTestCase(LiveServerTestCase):
         self.input_element().send_keys('par')
         wait_for_selector(".yourlabs-autocomplete", True)
 
+        import time
+        time.sleep(15)
+
         self.assertEqual(20, len(self.autocomplete_choice_elements()))
 
         # select paris
