@@ -326,7 +326,7 @@ Per Autocomplete class
         }
 
         widget_js_attributes = {
-            # That will set data-max-values which will set widget.maxValues
+            # That will set data-maximum-values which will set widget.maximumValues
             'max_values': 6,
         }
 
@@ -567,7 +567,7 @@ Now, you can instanciate the widget yourself like this:
                     choiceSelector: '[data-id]',
                 },
                 // Override some widget options, allow 3 choices:
-                maxValues: 3,
+                maximumValues: 3,
                 // or method:
                 getValue: function(choice) {
                     // This is the method that returns the value to use for the

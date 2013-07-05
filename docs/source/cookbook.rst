@@ -45,7 +45,7 @@ Various cooking recipes ``your_app/autocomplete_light_registry.py``:
         }
 
         widget_js_attributes = {
-            # That will set data-max-values which will set widget.maxValues
+            # That will set data-maximum-values which will set widget.maximumValues
             'max_values': 6,
         }
 
@@ -174,7 +174,7 @@ Using `widget.js` is pretty much the same:
             choiceSelector: '[data-id]',
         },
         // Override some widget options, allow 3 choices:
-        maxValues: 3,
+        maximumValues: 3,
         // or method:
         getValue: function(choice) {
             return choice.data('id'),
@@ -209,13 +209,13 @@ Hence the widget.js HTML cookbook:
       if don't need to override any method, but you could change
       that and make your own bootstrap, enabling you to make
       chained autocomplete, create options, whatever ... 
-    - data-max-values: override a widget option
+    - data-maximum-values: override a widget option
     - data-minimum-characters: override an autocomplete option,
     -->
     <span 
         class="autocomplete-light-widget"
         data-bootstrap="normal"
-        data-max-values="3"
+        data-maximum-values="3"
         data-minimum-characters="0"
     >
 

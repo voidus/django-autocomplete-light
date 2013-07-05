@@ -57,7 +57,7 @@ yourlabs.Widget = function(widget) {
 
     // The number of choices that the user may select with this widget. Set 0
     // for no limit. In the case of a foreign key you want to set it to 1.
-    this.maxValues = 0;
+    this.maximumValues = 0;
 }
 
 // When a choice is selected from the autocomplete of this widget,
@@ -110,9 +110,9 @@ yourlabs.Widget.prototype.selectChoice = function(choice) {
 // Unselect a value if the maximum number of selected values has been
 // reached.
 yourlabs.Widget.prototype.freeDeck = function() {
-    var slots = this.maxValues - this.deck.children().length;
+    var slots = this.maximumValues - this.deck.children().length;
 
-    if (this.maxValues && slots < 1) {
+    if (this.maximumValues && slots < 1) {
         // We'll remove the first choice which is supposed to be the oldest
         var choice = $(this.deck.children()[0]);
 
@@ -120,11 +120,11 @@ yourlabs.Widget.prototype.freeDeck = function() {
     }
 }
 
-// Empty the search input and hide it if maxValues has been reached.
+// Empty the search input and hide it if maximumValues has been reached.
 yourlabs.Widget.prototype.resetDisplay = function() {
     var selected = this.select.find('option:selected').length;
 
-    if (this.maxValues && selected == this.maxValues) {
+    if (this.maximumValues && selected == this.maximumValues) {
         var index = $(':input:visible').index(this.input);
         this.input.hide();
         var next = $(':input:visible:eq('+ index +')');
