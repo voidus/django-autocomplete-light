@@ -76,8 +76,8 @@ class AutocompleteBase(AutocompleteInterface):
     should fit most cases. However, it requires to overload
     choices_for_request().
     """
-    choice_html_format = u'<span class="div" data-value="%s">%s</span>'
-    empty_html_format = u'<span class="div"><em>%s</em></span>'
+    choice_html_format = u'<span class="block" data-value="%s">%s</span>'
+    empty_html_format = u'<span class="block"><em>%s</em></span>'
     autocomplete_html_format = u'%s'
     add_another_url_name = None
 

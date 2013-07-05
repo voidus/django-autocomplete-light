@@ -1,7 +1,7 @@
 {% load i18n %}
 {% load static %}
 
-<span class="div" data-value="{{ choice.pk }}">
+<span class="block" data-value="{{ choice.pk }}">
     {{ choice }}
     {% with choice.get_absolute_url as url %}
         {% if url %}
