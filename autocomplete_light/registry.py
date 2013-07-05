@@ -28,7 +28,7 @@ autodiscover
 
 from django.db import models
 
-from .autocomplete import AutocompleteModelBase
+from .autocomplete import AutocompleteModelTemplate
 
 __all__ = ('AutocompleteRegistry', 'registry', 'register', 'autodiscover')
 
@@ -43,7 +43,7 @@ class AutocompleteRegistry(dict):
         self.autocomplete_model_base = autocomplete_model_base
 
         if self.autocomplete_model_base is None:
-            self.autocomplete_model_base = AutocompleteModelBase
+            self.autocomplete_model_base = AutocompleteModelTemplate
 
     def autocomplete_for_model(self, model):
         """ Return the autocomplete class for a given model. """
