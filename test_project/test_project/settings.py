@@ -137,7 +137,7 @@ TEMPLATE_DIRS = (
     os.path.join(PROJECT_ROOT, 'templates'),
 )
 
-INSTALLED_APPS = (
+INSTALLED_APPS = [
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -146,10 +146,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # Uncomment the next line to enable the admin:
     'django.contrib.admin',
-    'generic_inline',
     'cities_light',
     'table_autocomplete',
-    'djangorestframework',
     'south',
     'project_specific',
     'autocomplete_light',
@@ -158,15 +156,13 @@ INSTALLED_APPS = (
     'fk_autocomplete',
     'gfk_autocomplete',
     'optionnal_gfk_autocomplete',
-    'genericm2m',
-    'generic_m2m_autocomplete',
+    'generic_inline',
     'admin_test_autocomplete',
     'dependant_autocomplete',
     'm2m_autocomplete',
     'navigation_autocomplete',
     'docs_autocomplete',
     'inlines_outside_admin',
-    'tagging',
     'template_autocomplete',
     'non_admin',
     'non_id_foreignkey',
@@ -176,7 +172,16 @@ INSTALLED_APPS = (
     'support_sandino',
     'default_template_autocomplete',
     'ajax_create',
-)
+]
+
+import sys
+if sys.version_info[0] == 2:
+    INSTALLED_APPS += [
+        'djangorestframework',
+        'genericm2m',
+        'generic_m2m_autocomplete',
+        'tagging',
+    ]
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
