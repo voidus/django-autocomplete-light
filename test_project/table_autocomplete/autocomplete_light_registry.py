@@ -1,6 +1,6 @@
 import autocomplete_light
 
-from models import TableWidget
+from .models import TableWidget
 
 
 autocomplete_light.register(TableWidget,
