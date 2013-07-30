@@ -1,4 +1,9 @@
-import urllib.request, urllib.parse, urllib.error
+import sys
+
+if sys.version_info[0] == 2:
+    import urllib
+else:
+    import urllib.request, urllib.parse, urllib.error
 
 from django import http
 
@@ -93,7 +98,10 @@ class AutocompleteRestModel(AutocompleteModel):
         url = self.get_source_url(max)
 
         try:
-            fh = urllib.request.urlopen(url)
+            if sys.version_info[0] == 2:
+                fh = urllib.urlopen(url)
+            else:
+                fh = urllib.request.urlopen(url)
             body = fh.read()
         except:
             return
@@ -137,7 +145,10 @@ class AutocompleteRestModel(AutocompleteModel):
         """
         model_class = self.model_for_source_url(url)
 
-        fh = urllib.request.urlopen(url)
+        if sys.version_info[0] == 2:
+            fh = urllib.request.urlopen(url)
+        else:
+            fh = urllib.urlopen(url)
         data = json.loads(fh.read())
         data.pop('url')
         fh.close()
