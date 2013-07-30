@@ -13,7 +13,7 @@ class AutocompleteModel(object):
         return choice.pk
 
     def choice_label(self, choice):
-        return unicode(choice)
+        return str(choice)
 
     def order_choices(self, choices):
         order_by = getattr(self, 'order_by', None)

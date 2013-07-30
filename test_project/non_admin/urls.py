@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, url
 from django.views import generic
 
-from forms import WidgetForm
-from models import Widget
+from .forms import WidgetForm
+from .models import Widget
 
 
 urlpatterns = patterns('',

@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from forms import TaggableForm
-from models import Taggable
+from .forms import TaggableForm
+from .models import Taggable
 
 
 class TaggableInline(admin.TabularInline):

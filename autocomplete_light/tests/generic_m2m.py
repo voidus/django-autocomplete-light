@@ -1,5 +1,5 @@
-from autocomplete.case import *
-from autocomplete.generic import AutocompleteGenericMock, AutocompleteGenericTestCase
+from .autocomplete.case import *
+from .autocomplete.generic import AutocompleteGenericMock, AutocompleteGenericTestCase
 
 from django import http
 from django.contrib.contenttypes.models import ContentType

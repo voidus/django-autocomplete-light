@@ -29,7 +29,7 @@ class AutocompleteInterface(object):
         """
         self.request = request
 
-        if hasattr(values, '__iter__'):
+        if isinstance(values, list):
             self.values = values
         else:
             self.values = [values]
@@ -76,9 +76,9 @@ class AutocompleteBase(AutocompleteInterface):
     should fit most cases. However, it requires to overload
     choices_for_request().
     """
-    choice_html_format = u'<span class="div" data-value="%s">%s</span>'
-    empty_html_format = u'<span class="div"><em>%s</em></span>'
-    autocomplete_html_format = u'%s'
+    choice_html_format = '<span class="div" data-value="%s">%s</span>'
+    empty_html_format = '<span class="div"><em>%s</em></span>'
+    autocomplete_html_format = '%s'
     add_another_url_name = None
 
     def choices_for_request(self):
@@ -119,10 +119,10 @@ class AutocompleteBase(AutocompleteInterface):
         """
         Convert a choice to a value.
         """
-        return unicode(choice)
+        return str(choice)
 
     def choice_label(self, choice):
         """
         Convert a choice to a label.
         """
-        return unicode(choice)
+        return str(choice)

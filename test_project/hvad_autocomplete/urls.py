@@ -1,8 +1,8 @@
 from django.conf.urls import patterns, url
 from django.views import generic
 
-from forms import ItemForm
-from models import Category, Item
+from .forms import ItemForm
+from .models import Category, Item
 
 urlpatterns = patterns('',
     url(r'item/add/$', generic.CreateView.as_view(

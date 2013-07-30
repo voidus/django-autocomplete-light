@@ -3,8 +3,8 @@ from django.views import generic
 
 import autocomplete_light
 
-from forms import WidgetForm
-from models import Widget
+from .forms import WidgetForm
+from .models import Widget
 
 
 urlpatterns = patterns('',

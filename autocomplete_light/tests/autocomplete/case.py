@@ -54,7 +54,7 @@ class AutocompleteTestCase(unittest.TestCase):
 
         for test in self.get_choices_for_request_tests():
             mock = self.autocomplete_mock(request=test['fixture'])
-            for k, v in test.get('kwargs', {}).items():
+            for k, v in list(test.get('kwargs', {}).items()):
                 setattr(mock, k, v)
             result = mock.choices_for_request()
             self.assert_choices_equal(list(result), test)
@@ -70,7 +70,7 @@ class AutocompleteTestCase(unittest.TestCase):
 
     def assert_validate_success(self, result, test):
         self.assertEqual(result, test['expected'],
-            u'Got %s for test %s %s' % (result, self.__class__.__name__,
+            'Got %s for test %s %s' % (result, self.__class__.__name__,
                 test))
 
     def test_validate(self):
@@ -93,7 +93,7 @@ class AutocompleteTestCase(unittest.TestCase):
 
     def assert_html_equals(self, result, test):
         self.assertEqual(result, test['expected'],
-            u'Got %s for test %s %s' % (result, self.__class__.__name__,
+            'Got %s for test %s %s' % (result, self.__class__.__name__,
                 test))
 
     def test_widget(self):
@@ -103,7 +103,7 @@ class AutocompleteTestCase(unittest.TestCase):
             return
 
         for test in self.get_widget_tests():
-            if 'form_class' in test.keys():
+            if 'form_class' in list(test.keys()):
                 form_class = test['form_class']
             # for display
             test['form_class'] = form_class.__name__
@@ -112,12 +112,12 @@ class AutocompleteTestCase(unittest.TestCase):
             try:
                 valid = form.is_valid()
             except TypeError:
-                print self.__class__, test, self.get_widget_tests()
+                print(self.__class__, test, self.get_widget_tests())
                 raise
 
             self.assertEqual(
                 valid, test['expected_valid'],
-                u'Unexepected valid: %s for test %s %s' % (
+                'Unexepected valid: %s for test %s %s' % (
                     valid, self.__class__.__name__, test)
             )
 
@@ -126,6 +126,6 @@ class AutocompleteTestCase(unittest.TestCase):
 
                 self.assertEqual(
                     str(data), str(test['expected_data']),
-                    u'Unexepected data: %s for test %s %s' % (
+                    'Unexepected data: %s for test %s %s' % (
                         data, self.__class__.__name__, test)
                 )

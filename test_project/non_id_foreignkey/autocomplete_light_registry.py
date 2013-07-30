@@ -6,7 +6,7 @@ from .models import CodeModel
 class AutocompleteCode(autocomplete_light.AutocompleteModelBase):
     '''Autocomplete for non-id foreign key
     '''
-    autocomplete_js_attributes = {'placeholder': u'Start type name...'}
+    autocomplete_js_attributes = {'placeholder': 'Start type name...'}
     search_fields = ('name',)
 
     def choice_value(self, choice):

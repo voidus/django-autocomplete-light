@@ -2,7 +2,7 @@ from django import forms
 
 import autocomplete_light
 
-from models import TaggedItem
+from .models import TaggedItem
 
 
 class TaggedItemForm(autocomplete_light.GenericModelForm):

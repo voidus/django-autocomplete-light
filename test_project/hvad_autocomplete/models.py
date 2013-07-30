@@ -19,7 +19,7 @@ class Item(models.Model):
     category = models.ForeignKey(Category, null=True, blank=True)
 
     def __unicode__(self):
-        return u"Category: %s" % (self.category)
+        return "Category: %s" % (self.category)
 
     def get_absolute_url(self):
         return urlresolvers.reverse('hvad_autocomplete:item_update',

@@ -1,8 +1,8 @@
 from django.contrib.contenttypes import generic
 from django.contrib import admin
 
-from forms import RelationshipForm
-from models import Relationship, SomeModel
+from .forms import RelationshipForm
+from .models import Relationship, SomeModel
 
 
 class RelationshipInline(generic.GenericTabularInline):

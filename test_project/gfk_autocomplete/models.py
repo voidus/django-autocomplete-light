@@ -11,4 +11,4 @@ class TaggedItem(models.Model):
     tag = models.CharField(max_length=100)
 
     def __unicode__(self):
-        return u'%s %s' % (self.tag, self.content_object)
+        return '%s %s' % (self.tag, self.content_object)

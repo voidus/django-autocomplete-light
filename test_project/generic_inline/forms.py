@@ -2,7 +2,7 @@ from django import forms
 
 import autocomplete_light
 
-from models import Relationship
+from .models import Relationship
 
 
 class RelationshipForm(autocomplete_light.GenericModelForm):

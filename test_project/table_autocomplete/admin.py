@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import TableWidget
+from .models import TableWidget
 
 from autocomplete_light import modelform_factory
 

@@ -37,7 +37,7 @@ class GenericModelForm(GenericModelForm):
         Yield name, field for each RelatedObjectsDescriptor of the model of
         this ModelForm.
         """
-        for name, field in self.fields.items():
+        for name, field in list(self.fields.items()):
             if not isinstance(field, GenericModelMultipleChoiceField):
                 continue
 

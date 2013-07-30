@@ -12,7 +12,7 @@ class GenericModelFormTestCase(unittest.TestCase):
     def setUp(self):
         self.country, c = Country.objects.get_or_create(name='Countryname')
         self.city, c = City.objects.get_or_create(country=self.country,
-            name=u'Paris')
+            name='Paris')
 
     def tearDown(self):
         self.country.delete()
@@ -45,11 +45,11 @@ class GenericModelFormTestCase(unittest.TestCase):
         )
 
         for test in tests:
-            if 'data' not in test.keys():
+            if 'data' not in list(test.keys()):
                 test['data'] = {'tag': test.get('tag', None)}
 
-                if 'content_object' in test.keys():
-                    test['data']['content_object'] = u'%s-%s' % (
+                if 'content_object' in list(test.keys()):
+                    test['data']['content_object'] = '%s-%s' % (
                         ContentType.objects.get_for_model(test['content_object']).pk,
                         test['content_object'].pk)
 
@@ -59,6 +59,6 @@ class GenericModelFormTestCase(unittest.TestCase):
                 result = form.save()
                 self.assertEqual(test['tag'], result.tag)
 
-                if 'content_object' in test.keys():
+                if 'content_object' in list(test.keys()):
                     self.assertEqual(test['content_object'],
                         result.content_object)

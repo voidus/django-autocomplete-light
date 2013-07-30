@@ -15,4 +15,4 @@ class TestModel(models.Model):
 	choices = models.ManyToManyField(TemplatedChoice)
 
 	def __unicode__(self):
-		return u', '.join(self.choices.values_list('name', flat=True))
+		return ', '.join(self.choices.values_list('name', flat=True))

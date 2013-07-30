@@ -33,7 +33,7 @@ class WidgetBase(object):
                  widget_js_attributes=None, autocomplete_js_attributes=None,
                  extra_context=None):
 
-        if isinstance(autocomplete, basestring):
+        if isinstance(autocomplete, str):
             self.autocomplete_name = autocomplete
             from autocomplete_light import registry
             self.autocomplete = registry[self.autocomplete_name]
@@ -67,17 +67,17 @@ class WidgetBase(object):
         self.widget_js_attributes.update(
             extra_widget_js_attributes)
 
-        if 'bootstrap' not in self.widget_js_attributes.keys():
+        if 'bootstrap' not in list(self.widget_js_attributes.keys()):
             self.widget_js_attributes['bootstrap'] = 'normal'
 
-        if 'choice_selector' not in self.autocomplete_js_attributes.keys():
+        if 'choice_selector' not in list(self.autocomplete_js_attributes.keys()):
             self.autocomplete_js_attributes['choice_selector'] = '[data-value]'
 
-        if 'url' not in self.autocomplete_js_attributes.keys():
+        if 'url' not in list(self.autocomplete_js_attributes.keys()):
             url = self.autocomplete().get_absolute_url()
             self.autocomplete_js_attributes['url'] = url
 
-        if 'placeholder' not in self.autocomplete_js_attributes.keys():
+        if 'placeholder' not in list(self.autocomplete_js_attributes.keys()):
             self.autocomplete_js_attributes['placeholder'] = _(
                 'type some text to search in this autocomplete').capitalize()
 
@@ -167,15 +167,15 @@ class TextWidget(forms.TextInput, WidgetBase):
         attrs = forms.TextInput.build_attrs(self, extra_attrs, **kwargs)
 
         def update_attrs(source, prefix=''):
-            for key, value in source.items():
-                key = u'data-%s%s' % (prefix, key.replace('_', '-'))
+            for key, value in list(source.items()):
+                key = 'data-%s%s' % (prefix, key.replace('_', '-'))
                 attrs[key] = value
 
         self.process_js_attributes()
         update_attrs(self.widget_js_attributes)
         update_attrs(self.autocomplete_js_attributes, 'autocomplete-')
 
-        if 'class' not in attrs.keys():
+        if 'class' not in list(attrs.keys()):
             attrs['class'] = ''
         attrs['class'] += ' autocomplete-light-text-widget'
 

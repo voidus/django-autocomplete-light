@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 from django.views import generic
 
-from models import TemplatedChoice
+from .models import TemplatedChoice
 
 
 urlpatterns = patterns('',

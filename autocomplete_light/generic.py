@@ -58,7 +58,7 @@ class GenericModelChoiceField(fields.Field):
         valid = self.widget.autocomplete(values=value).validate_values()
 
         if not valid:
-            raise forms.ValidationError(u'%s cannot validate %s' % (
+            raise forms.ValidationError('%s cannot validate %s' % (
                 self, value))
 
     def prepare_value(self, value):
@@ -66,7 +66,7 @@ class GenericModelChoiceField(fields.Field):
         Given a model instance as value, with content type id of 3 and pk of 5,
         return such a string '3-5'.
         """
-        if isinstance(value, (str, unicode)):
+        if isinstance(value, str):
             # Apparently there's a bug in django, that causes a python value to
             # be passed here. This ONLY happens when in an inline ....
             return value
@@ -86,7 +86,7 @@ class GenericModelChoiceField(fields.Field):
         try:
             content_type = ContentType.objects.get_for_id(content_type_id)
         except ContentType.DoesNotExist:
-            raise forms.ValidationError(u'Wrong content type')
+            raise forms.ValidationError('Wrong content type')
         else:
             model = content_type.model_class()
 

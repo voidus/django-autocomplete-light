@@ -2,7 +2,7 @@ from django.contrib import admin
 
 import autocomplete_light
 
-from models import Widget
+from .models import Widget
 
 
 class WidgetAdmin(admin.ModelAdmin):

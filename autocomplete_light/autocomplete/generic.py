@@ -30,7 +30,7 @@ class AutocompleteGeneric(AutocompleteModel):
         assert self.choices, 'autocomplete.choices should be a queryset list'
 
         for value in self.values:
-            if not isinstance(value, basestring):
+            if not hasattr(value, 'split'):
                 return False
 
             try:

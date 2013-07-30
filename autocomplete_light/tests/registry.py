@@ -33,20 +33,20 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_register_model(self):
         self.registry.register(Foo)
-        self.assertIn('FooAutocomplete', self.registry.keys())
+        self.assertIn('FooAutocomplete', list(self.registry.keys()))
 
     def test_register_model_and_autocomplete(self):
         self.registry.register(Foo, Bar)
-        self.assertIn('FooBar', self.registry.keys())
+        self.assertIn('FooBar', list(self.registry.keys()))
 
     def test_register_autocomplete(self):
         self.registry.register(Bar)
-        self.assertIn('Bar', self.registry.keys())
+        self.assertIn('Bar', list(self.registry.keys()))
 
     def test_unregister(self):
         self.registry.register(Bar)
         self.registry.unregister('Bar')
-        self.assertEqual(self.registry.keys(), [])
+        self.assertEqual(list(self.registry.keys()), [])
 
     def test_register_with_kwargs(self):
         choices = ['foo']
@@ -71,7 +71,7 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_register_with_custom_name(self):
         self.registry.register(Foo, Bar, name='BarFoo')
-        self.assertIn('BarFoo', self.registry.keys())
+        self.assertIn('BarFoo', list(self.registry.keys()))
         self.assertEqual(self.registry['BarFoo'].__name__, 'BarFoo')
 
     def test_register_no_name_fail(self):
@@ -86,4 +86,4 @@ class RegistryTestCase(unittest.TestCase):
 
     def test_register_generic_with_custom_name(self):
         self.registry.register(Generic, name='foo')
-        self.assertTrue('foo' in self.registry.keys())
+        self.assertTrue('foo' in list(self.registry.keys()))

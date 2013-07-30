@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from forms import OptionnalTaggedItemForm
-from models import OptionnalTaggedItem
+from .forms import OptionnalTaggedItemForm
+from .models import OptionnalTaggedItem
 
 
 class OptionnalTaggedItemAdmin(admin.ModelAdmin):

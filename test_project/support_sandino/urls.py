@@ -2,7 +2,7 @@ from django.conf.urls import patterns, include, url
 
 from django.views import generic
 
-from forms import ScheduleForm
+from .forms import ScheduleForm
 
 
 urlpatterns = patterns('',

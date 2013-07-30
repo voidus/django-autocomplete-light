@@ -2,7 +2,7 @@ from django import forms
 
 import autocomplete_light
 
-from models import Dummy
+from .models import Dummy
 
 
 class DummyForm(forms.ModelForm):

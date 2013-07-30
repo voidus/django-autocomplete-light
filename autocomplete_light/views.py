@@ -75,12 +75,12 @@ class CreateView(generic.CreateView):
             obj = self.object
 
         html = []
-        html.append(u'<script type="text/javascript">')
-        html.append(u'opener.dismissAddAnotherPopup( window, "%s", "%s" );' % (
-            unicode(obj.pk), unicode(obj).replace('"', '\\"')))
-        html.append(u'</script>')
+        html.append('<script type="text/javascript">')
+        html.append('opener.dismissAddAnotherPopup( window, "%s", "%s" );' % (
+            str(obj.pk), str(obj).replace('"', '\\"')))
+        html.append('</script>')
 
-        html = u''.join(html)
+        html = ''.join(html)
 
         return http.HttpResponse(html, status=201)
 

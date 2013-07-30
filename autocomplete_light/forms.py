@@ -24,9 +24,9 @@ class FixedModelForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(FixedModelForm, self).__init__(*args, **kwargs)
 
-        msg = unicode(M)
+        msg = str(M)
 
-        for name, field in self.fields.items():
+        for name, field in list(self.fields.items()):
             if not isinstance(field.widget, MultipleChoiceWidget):
                 continue
 
@@ -109,7 +109,7 @@ def modelform_factory(model, autocomplete_exclude=None, registry=None,
     widgets.update(kwargs.pop('widgets', {}))
     kwargs['widgets'] = widgets
 
-    if 'form' not in kwargs.keys():
+    if 'form' not in list(kwargs.keys()):
         kwargs['form'] = FixedModelForm
 
     return django_modelform_factory(model, **kwargs)

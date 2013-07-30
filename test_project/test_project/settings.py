@@ -152,7 +152,6 @@ INSTALLED_APPS = [
     'project_specific',
     'autocomplete_light',
     'charfield_pk_autocomplete',
-    'charfield_autocomplete',
     'fk_autocomplete',
     'gfk_autocomplete',
     'optionnal_gfk_autocomplete',
@@ -162,7 +161,6 @@ INSTALLED_APPS = [
     'm2m_autocomplete',
     'navigation_autocomplete',
     'docs_autocomplete',
-    'inlines_outside_admin',
     'template_autocomplete',
     'non_admin',
     'non_id_foreignkey',
@@ -181,6 +179,8 @@ if sys.version_info[0] == 2:
         'genericm2m',
         'generic_m2m_autocomplete',
         'tagging',
+        'charfield_autocomplete',
+        'inlines_outside_admin',
     ]
 
 # A sample logging configuration. The only tangible logging

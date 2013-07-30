@@ -2,7 +2,7 @@ from django.contrib import admin
 
 import autocomplete_light
 
-from models import MediaFilter, Media
+from .models import MediaFilter, Media
 
 
 class MediaFilterAdmin(admin.ModelAdmin):

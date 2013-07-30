@@ -1,4 +1,4 @@
-import urllib
+import urllib.request, urllib.parse, urllib.error
 
 from django import http
 
@@ -30,7 +30,7 @@ class AutocompleteRestModel(AutocompleteModel):
         By default, return self.source_url with the data dict returned by
         get_source_url_data().
         """
-        return '%s?%s' % (self.source_url, urllib.urlencode(
+        return '%s?%s' % (self.source_url, urllib.parse.urlencode(
             self.get_source_url_data(limit)))
 
     def get_source_url_data(self, limit):
@@ -42,7 +42,7 @@ class AutocompleteRestModel(AutocompleteModel):
         """
         data = {}
         if self.request:
-            for key, value in self.request.GET.items():
+            for key, value in list(self.request.GET.items()):
                 data[key] = value
 
         data.update({
@@ -66,7 +66,7 @@ class AutocompleteRestModel(AutocompleteModel):
 
     def choices_for_request(self):
         choices = super(AutocompleteRestModel, self).choices_for_request()
-        unicodes = [unicode(choice) for choice in choices]
+        unicodes = [str(choice) for choice in choices]
 
         slots = self.limit_choices - len(choices)
 
@@ -75,7 +75,7 @@ class AutocompleteRestModel(AutocompleteModel):
 
             for choice in self.get_remote_choices(slots):
                 # avoid data that's already in local
-                if unicode(choice) in unicodes:
+                if str(choice) in unicodes:
                     continue
 
                 choices.append(choice)
@@ -93,7 +93,7 @@ class AutocompleteRestModel(AutocompleteModel):
         url = self.get_source_url(max)
 
         try:
-            fh = urllib.urlopen(url)
+            fh = urllib.request.urlopen(url)
             body = fh.read()
         except:
             return
@@ -101,7 +101,7 @@ class AutocompleteRestModel(AutocompleteModel):
             for data in json.loads(body):
                 url = data.pop('url')
 
-                for name in data.keys():
+                for name in list(data.keys()):
                     field = self.model._meta.get_field_by_name(name)[0]
                     if getattr(field, 'rel', None):
                         data.pop(name)
@@ -137,7 +137,7 @@ class AutocompleteRestModel(AutocompleteModel):
         """
         model_class = self.model_for_source_url(url)
 
-        fh = urllib.urlopen(url)
+        fh = urllib.request.urlopen(url)
         data = json.loads(fh.read())
         data.pop('url')
         fh.close()
@@ -145,7 +145,7 @@ class AutocompleteRestModel(AutocompleteModel):
         uniques = [f.name for f in model_class._meta.fields if f.unique]
         unique_data = {}
 
-        for key, value in data.items():
+        for key, value in list(data.items()):
             if key not in uniques:
                 continue
 
@@ -159,10 +159,10 @@ class AutocompleteRestModel(AutocompleteModel):
             assert self.get_or_create_by, 'get_or_create_by needed'
 
             for key in self.get_or_create_by:
-                if key in data.keys() and data[key]:
+                if key in list(data.keys()) and data[key]:
                     unique_data[key] = data[key]
 
-            if not len(unique_data.keys()):
+            if not len(list(unique_data.keys())):
                 raise Exception('cannot check if this model exists locally')
 
         try:
@@ -170,8 +170,8 @@ class AutocompleteRestModel(AutocompleteModel):
         except model_class.DoesNotExist:
             model = model_class(**unique_data)
 
-        for key, value in data.items():
-            is_string = isinstance(value, basestring)
+        for key, value in list(data.items()):
+            is_string = isinstance(value, str)
             field = model_class._meta.get_field_by_name(key)[0]
 
             if getattr(field, 'rel', None) and is_string:

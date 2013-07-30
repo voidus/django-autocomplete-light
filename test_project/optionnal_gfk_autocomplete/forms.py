@@ -2,7 +2,7 @@ from django import forms
 
 import autocomplete_light
 
-from models import OptionnalTaggedItem
+from .models import OptionnalTaggedItem
 
 
 class OptionnalTaggedItemForm(autocomplete_light.GenericModelForm):

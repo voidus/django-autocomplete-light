@@ -3,7 +3,7 @@ from django import forms
 import autocomplete_light
 from cities_light.models import City
 
-from models import Event
+from .models import Event
 
 
 class ScheduleForm(forms.ModelForm):

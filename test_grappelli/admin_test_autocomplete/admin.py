@@ -2,7 +2,7 @@ from django.contrib import admin
 
 import autocomplete_light
 
-from models import Foo, Bar
+from .models import Foo, Bar
 
 
 class FooInline(admin.TabularInline):

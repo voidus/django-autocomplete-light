@@ -2,7 +2,7 @@ from django import http
 
 import autocomplete_light
 
-from models import Creatable
+from .models import Creatable
 
 
 class AutocompleteCreatable(autocomplete_light.AutocompleteModelTemplate):

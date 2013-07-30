@@ -2,7 +2,7 @@ from django.contrib import admin
 
 import autocomplete_light
 
-from models import Trip, City, Trip_City
+from .models import Trip, City, Trip_City
 
 from django.forms.widgets import HiddenInput
 

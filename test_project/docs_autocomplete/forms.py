@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from cities_light.models import City
 import autocomplete_light
 
-from models import Profile
+from .models import Profile
 
 
 class ProfileForm(forms.ModelForm):

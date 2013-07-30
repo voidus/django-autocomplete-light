@@ -3,7 +3,7 @@ from django.forms.models import modelformset_factory
 
 import autocomplete_light
 
-from models import OutsideAdmin
+from .models import OutsideAdmin
 
 
 OutsideAdminModelForm = autocomplete_light.modelform_factory(OutsideAdmin, widgets={

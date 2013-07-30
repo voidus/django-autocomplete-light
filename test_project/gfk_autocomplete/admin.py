@@ -1,7 +1,7 @@
 from django.contrib import admin
 
-from forms import TaggedItemForm
-from models import TaggedItem
+from .forms import TaggedItemForm
+from .models import TaggedItem
 
 
 class TaggedItemAdmin(admin.ModelAdmin):
