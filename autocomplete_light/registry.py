@@ -168,6 +168,7 @@ class AutocompleteRegistry(dict):
                 return self[name](*args, **kwargs)
             return lazy_constructor
 
+
 def _autodiscover(registry):
     """See documentation for autodiscover (without the underscore)"""
     import copy
