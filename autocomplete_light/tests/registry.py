@@ -87,3 +87,16 @@ class RegistryTestCase(unittest.TestCase):
     def test_register_generic_with_custom_name(self):
         self.registry.register(Generic, name='foo')
         self.assertTrue('foo' in self.registry.keys())
+
+    def test_lazy_getitem(self):
+        lazy_autocomplete = self.registry['LazyAutocomplete']
+        self.registry.register(Generic, name='LazyAutocomplete')
+        self.assertIsInstance(lazy_autocomplete(), Generic)
+
+    def test_lazy_getitem_fails(self):
+        lazy_autocomplete = self.registry['LazyAutocomplete']
+        try:
+            self.assertIsInstance(lazy_autocomplete(), Generic)
+            self.fail('Should raise a KeyError')
+        except KeyError:
+            pass
