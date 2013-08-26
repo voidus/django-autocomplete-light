@@ -15,7 +15,7 @@ update, i don't know why, i've spent countless hours trying to debug it, asked
 numerous times on #travis, was recommended to contact support which i did
 but support didn't reply so here goes ....
 """
-@unittest.skipIf(os.environ.get('TRAVIS', False))
+@unittest.skipIf(os.environ.get('TRAVIS', False), 'No travis support')
 class WidgetTestCase(LiveServerTestCase):
     fixtures = ['test.json', 'initial_data.json']
 
